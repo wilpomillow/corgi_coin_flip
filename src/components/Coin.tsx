@@ -139,12 +139,15 @@ export function Coin({ onFlipComplete, requestFlipNonce }: Props) {
   const slices = React.useMemo(() => {
     const out: { key: number; z: number; opacity: number }[] = []
     const half = THICKNESS_PX / 2
+    const denom = EDGE_SLICES - 1
+
     for (let i = 0; i < EDGE_SLICES; i++) {
-      const t = EDGE_SLICES === 1 ? 0.5 : i / (EDGE_SLICES - 1)
+      const t = i / denom
       const z = -half + t * THICKNESS_PX
       const opacity = 0.22 + 0.26 * Math.sin(t * Math.PI)
       out.push({ key: i, z, opacity })
     }
+
     return out
   }, [])
 
